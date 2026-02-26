@@ -1,0 +1,25 @@
+[Unit]
+Description=Gift Intelligence Embedding Service (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/gift-intelligence
+Environment="PATH=/var/www/gift-intelligence/venv/bin"
+ExecStart=/var/www/gift-intelligence/venv/bin/uvicorn app_embedding_service:app --host 127.0.0.1 --port 8001 --workers 1
+
+# Restart settings
+Restart=always
+RestartSec=10
+
+# Performance settings
+LimitNOFILE=65536
+
+# Logging
+StandardOutput=append:/var/log/embedding-service.log
+StandardError=append:/var/log/embedding-service-error.log
+
+[Install]
+WantedBy=multi-user.target
