@@ -33,6 +33,17 @@ Thumbs.db
 # Logs
 *.log
 
+# Model Files (installed separately on server - DO NOT DEPLOY)
+minilm_full_dimension_models/
+*.safetensors
+*.bin
+*.tar.gz
+minilm_model.tar.gz
+deploy_package.tar.gz
+
+# Deployment scripts (customize per server)
+upload_instructions.sh
+
 # Testing
 .pytest_cache/
 .coverage

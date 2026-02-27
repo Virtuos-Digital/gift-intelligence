@@ -14,7 +14,20 @@ from contextlib import asynccontextmanager
 # ============================================================================
 # Configuration
 # ============================================================================
-MODEL_PATH = "minilm_full_dimension_models/minilm_model"
+import os
+
+# Use system-wide model cache (installed once on server)
+# Falls back to local model for development
+MODEL_PATH = os.getenv(
+    "EMBEDDING_MODEL_PATH", 
+    "/opt/models/minilm"  # Server location
+)
+
+# For local development, use HuggingFace cache
+if not os.path.exists(MODEL_PATH):
+    print(f"⚠️  Model not found at {MODEL_PATH}")
+    print("   Using HuggingFace model (will download to cache)")
+    MODEL_PATH = "sentence-transformers/all-MiniLM-L6-v2"
 
 # Global variable for model
 model = None

@@ -8,6 +8,7 @@ User=www-data
 Group=www-data
 WorkingDirectory=/var/www/gift-intelligence
 Environment="PATH=/var/www/gift-intelligence/venv/bin"
+Environment="EMBEDDING_MODEL_PATH=/opt/models/minilm"
 ExecStart=/var/www/gift-intelligence/venv/bin/uvicorn app_embedding_service:app --host 127.0.0.1 --port 8001 --workers 1
 
 # Restart settings
